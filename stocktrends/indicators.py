@@ -114,6 +114,11 @@ class Renko(Instrument):
         step = shift // self.brick_size
         self.bdf[['open', 'close']] += step * self.brick_size
 
+    def append_data(self, new_data):
+        self.odf = pd.concat([self.odf, new_data], ignore_index=True)
+        self.df = pd.concat([self.df, new_data], ignore_index=True)
+
+
 
 class LineBreak(Instrument):
 
